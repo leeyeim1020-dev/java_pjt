@@ -16,6 +16,7 @@ public class MainClass {
 		 // let 변수명 = 데이터;
 		 // let num = 10;
 		 // 데이터 타입 변수명 = 데이터;
+		/*
 		  int num = 10; // 변수 선언 & 초기화
 		  int num2; // 변수 선언
 		  num2 = 20; // 변수 초기화
@@ -54,7 +55,7 @@ public class MainClass {
 		   */
 		  
 		  // 6. '_'를 제외한 특수문자는 변수명으로 사용할 수 없다.
-		  int my_score = 100;  //가능
+		  //int my_score = 100;  //가능
 		  //int my-score = 100;  //불가
 		  //int my^^score = 100;  //불가
 		  
@@ -63,8 +64,8 @@ public class MainClass {
 		  
 		  // 8. 변수명에 숫자를 사용하는 경우 첫 글자를 제외한 나머지 글자에 사용할 수 있다.
 		  // int 1number = 10; //불가
-		  int num1ber = 10; //가능
-		  int number1 = 10; //가능
+		  //int num1ber = 10; //가능
+		  //int number1 = 10; //가능
 		  
 		  /*
           ㆍ 변수명은 영문으로 하고, 첫 글자는 소문자로 한다.
@@ -86,6 +87,7 @@ public class MainClass {
 		  // int number = 30;
 		  
 		  // 데이터 복사
+		  /*
 		  int num1 = 10;
 		  System.out.println("num1: " + num1);  // num1: 10
 		  
@@ -110,7 +112,7 @@ public class MainClass {
 		  width = 100;
 		  height = 50;
 		  System.out.println("방의 넓이: " + (width * height));  // 5000
-		  
+		  */
 		  
 		  
 		  
