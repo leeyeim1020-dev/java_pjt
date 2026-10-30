@@ -21,8 +21,32 @@ public class MemberService {
 		System.out.println("Input new member ID");
 		String memberId = scanner.next();
 		
+		while (true) {
+			Member member = db.memberDB.get(memberId);
+			if (member != null) {
+				System.out.println("Input new member ID");
+				memberId = scanner.next();
+				
+			} else {
+				break;
+			
+			}
+			
+		}
+				
 		System.out.println("Input new member PW");
 		String memberPw = scanner.next();
+		
+		while (true) {
+			if (memberPw.length() < 8 || memberPw.length() > 12) {
+				System.out.println("Input new member PW");
+				memberPw = scanner.next();
+				
+			} else {
+				break;
+				
+			}
+		}
 		
 		System.out.println("Input new member MAIL");
 		String memberMail = scanner.next();
@@ -46,29 +70,37 @@ public class MemberService {
 	/*
 	 * 로그인
 	 */
-	public void doSignIn(Scanner scanner) {
-		System.out.println("Input new member ID");
-		String memberId = scanner.next();
+	public void doSignIn(Scanner scanner, Flag flag) {
+		
+		System.out.println("systemFlag: " + flag.systemFlag);
+		
+		int count = 1;
+		while (true) {
 			
-		System.out.println("Input new member PW");
-		String memberPw = scanner.next();
+			if (count > 3) {
+				flag.systemFlag = false;
+				break;
+			}
 			
-		// MemberDB db = new MemberDB();
-		Member searchedMember = db.memberDB.get(memberId);
+			System.out.println("Input new member ID");
+			String memberId = scanner.next();
+				
+			System.out.println("Input new member PW");
+			String memberPw = scanner.next();
 			
-		// searchedMember: Member or null
-		if (searchedMember != null) {
+			Member searchedMember = db.memberDB.get(memberId);
 			
-			if (searchedMember.memberPw.equals(memberPw)) {
+			if (searchedMember != null && searchedMember.memberPw.equals(memberPw)) {
 				System.out.println("SIGN-IN SUCCESS!!");
+				break;
 				
 			} else {
 				System.out.println("SIGN-IN FAIL!!");
-					
-			}
+				count++;
 				
-		} else {
-			System.out.println("SIGN-IN FAIL!!");
+			}
+		
+					
 		}
 		
 		/*
@@ -93,20 +125,23 @@ public class MemberService {
 		System.out.println("Input member PHONE");
 		String memberPhone = scanner.next();
 		
+		// 인증 절차 추가
+		
 		Member searchedMember = db.memberDB.get(memberId);
+		
+		if (searchedMember != null && searchedMember.memberPw.equals(memberPw)) {
 		searchedMember.memberPw = memberPw;
 		searchedMember.memberMail = memberMail;
 		searchedMember.memberPhone = memberPhone;
 		
+		} else {
+			return;
+			
+		}
+		
 		// 로깅
 		searchedMember = db.memberDB.get(memberId);
 		searchedMember.printInfo();
-		
-//		System.out.println(searchedMember.memberId);
-//		System.out.println(searchedMember.memberPw);
-//		System.out.println(searchedMember.memberMail);
-//		System.out.println(searchedMember.memberPhone);
-	
 		
 		/*
 		 * 과제7: ID, PW 인증 -> ok -> 정보 수정
@@ -128,12 +163,6 @@ public class MemberService {
 	        System.out.println("--------------------");
 	    }
 	}
-	
-	
-	
-	
-	
-	
 	
 	/*
 	 * 회원 탈퇴
