@@ -3,7 +3,7 @@ package com.office.ex;
 import java.util.Scanner;
 
 /*
- * 월급 지급 명령을 내린다. 
+ * 월급 지급 명령을 내린다.
  */
 public class PayController {
 
@@ -19,9 +19,8 @@ public class PayController {
 			payService.pay(thisMonth);
 			
 		}
-		
-		
 //		scanner.close();
+		
 	}
 	
 }

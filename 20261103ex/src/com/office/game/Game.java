@@ -1,7 +1,5 @@
 package com.office.game;
 
-import java.util.Iterator;
-
 public class Game {
 	
 	private Bear bear;
@@ -24,7 +22,8 @@ public class Game {
 				this.robot,
 				this.airPlain,
 				this.dog
-		}
+		};
+		
 	}
 
 
@@ -39,7 +38,10 @@ public class Game {
 //		dog.run(x, y);
 //		airPlain.run(x, y);
 			
-		for (int i = 0, i < iCharactors )
+		for (int i = 0; i < iCharactors.length; i++) {
+			iCharactors[i].run(x, y);
+		}
+		
 	}
-	
+
 }

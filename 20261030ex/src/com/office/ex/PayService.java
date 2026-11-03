@@ -13,7 +13,7 @@ public class PayService {
 	Chajang chajang;
 	
 	public PayService() {
-		daeri = new Daeri();
+		daeri = new Daeri();    //1000000
 		gwajang = new Gwajang();
 		chajang = new Chajang();
 	
