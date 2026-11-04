@@ -1,8 +1,5 @@
 package com.office.member;
 
-/**
- * 
- */
 public class MemberDto {
 	
 	private String memId;
@@ -19,6 +16,12 @@ public class MemberDto {
 		this.memPw = memPw;
 		this.memMail = memMail;
 		this.memPhone = memPhone;
+	}
+	
+	public MemberDto(String memId, String memPw, String memMail) {
+		this.memId = memId;
+		this.memPw = memPw;
+		this.memMail = memMail;
 	}
 
 	public String getMemId() {

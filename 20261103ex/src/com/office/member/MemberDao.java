@@ -19,5 +19,25 @@ public class MemberDao {
 		
 	}
 
-	
+	public int insertNewMember(MemberDto memberDto) {
+		
+		db.put(memberDto.getMemId(), memberDto);
+		
+		
+		return db.get(memberDto.getMemId()) != null ? 1: 0;  // 0 or 1
+	}
+
+	public MemberDto searchMemberByMemIdAndMemPw(MemberDto memberDto) {
+		
+		MemberDto dto = db.get(memberDto.getMemId());
+		
+		if (dto != null && dto.getMemPw().equals(memberDto.getMemPw())) {
+			return dto;
+				
+		} else {
+			return null;
+				
+		}	
+
+	}
 }

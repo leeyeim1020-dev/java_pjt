@@ -6,10 +6,19 @@ public class MemberController implements MemberConfig {
 		
 	
 	public void execute() {
+		
 		Scanner scanner = new Scanner(System.in);
 		boolean systemFlag = true;
 		MemberService memberService = new MemberService();
 		
+		if (IS_DEV)
+			new MemberDumy().signUpForDumy(memberService);
+	
+		String memId;
+		String memPw;
+		String memMail;
+		String memPhone;
+		MemberDto memberDto;
 		
 		while (systemFlag) {
 			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIYF   4.DELETE   99.SYSTEM-OUT");
@@ -19,25 +28,35 @@ public class MemberController implements MemberConfig {
 			case SIGN_UP: 
 				
 				System.out.println("Input new member ID!");
-				String memId = scanner.next();
+				memId = scanner.next();
 				
 				System.out.println("Input new member PW!");
-				String memPw = scanner.next();
+				memPw = scanner.next();
 				
 				System.out.println("Input new member MAIL!");
-				String memMail = scanner.next();
+				memMail = scanner.next();
 				
 				System.out.println("Input new member PHONE!");
-				String memPhone = scanner.next();
+				memPhone = scanner.next();
 				
-				MemberDto memberDto = new MemberDto(memId, memPw, memMail, memPhone);
+				memberDto = new MemberDto(memId, memPw, memMail, memPhone);
+				
 				memberService.signUp(memberDto);
 				
 				break;
 				
 			case SIGN_IN: 
 				
-				memberService.signIn();
+				System.out.println("Input member ID!");
+				memId = scanner.next();
+				
+				System.out.println("Input member PW!");
+				memPw = scanner.next();
+			  
+				memberDto = new MemberDto(memId, memPw, null);
+				
+				memberService.signIn(memberDto);
+				
 				break;
 				
 			case MODIYF: 
