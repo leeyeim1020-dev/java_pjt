@@ -50,9 +50,15 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
+	public void delete(MemberDto memberDto) {
+		MemberDto deletedMemerDto = memberDao.deleteMemberByMemIdAndMemPw(memberDto);
 		
+		if (deletedMemerDto != null) {
+			System.out.println("탈퇴처리 완료되었습니다.");
+			
+		} else {
+			System.out.println("탈퇴처리 실패했습니다.");
+		}
 	}
 	
 	
