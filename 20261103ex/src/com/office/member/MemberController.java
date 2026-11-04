@@ -12,24 +12,40 @@ public class MemberController implements MemberConfig {
 		
 		
 		while (systemFlag) {
-			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIYF   4.DELTE   99.SYSTEM-OUT");
+			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIYF   4.DELETE   99.SYSTEM-OUT");
 			int selsctedMenuNum = scanner.nextInt();
 			
 			switch (selsctedMenuNum) {
 			case SIGN_UP: 
-				memberService.signUp(scanner);
+				
+				System.out.println("Input new member ID!");
+				String memId = scanner.next();
+				
+				System.out.println("Input new member PW!");
+				String memPw = scanner.next();
+				
+				System.out.println("Input new member MAIL!");
+				String memMail = scanner.next();
+				
+				System.out.println("Input new member PHONE!");
+				String memPhone = scanner.next();
+				
+				MemberDto memberDto = new MemberDto(memId, memPw, memMail, memPhone);
+				memberService.signUp(memberDto);
+				
 				break;
 				
 			case SIGN_IN: 
-				memberService.signIn(scanner);
+				
+				memberService.signIn();
 				break;
 				
 			case MODIYF: 
-				memberService.modify(scanner);
+				memberService.modify();
 				break;
 				
-			case DELTE: 
-				memberService.delete(scanner);
+			case DELETE: 
+				memberService.delete();
 				break;	
 				
 			case SYSTEM_OUT: 

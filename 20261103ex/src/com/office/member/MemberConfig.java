@@ -5,7 +5,7 @@ public interface MemberConfig {
 	final int SIGN_UP		= 1;
 	final int SIGN_IN		= 2;
 	final int MODIYF		= 3;
-	final int DELTE			= 4;
+	final int DELETE			= 4;
 	final int SYSTEM_OUT	= 99;
 	
 }
