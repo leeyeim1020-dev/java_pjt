@@ -5,7 +5,7 @@ public class MemberService implements IMemberService {
 	final private MemberDao memberDao;
 	
 	public MemberService(MemberDao memberDao) {
-		this.memberDao = MemberDao memberDao;
+		this.memberDao = memberDao;
 	}
 	
 	
@@ -58,13 +58,14 @@ public class MemberService implements IMemberService {
 		if (updatedMemberDto != null) {
 			System.out.println("Modify SUCCESS!");
 		} else {
-			System.out.println();
+			System.out.println("Modify FAIL!");
 		}
 		
 	}
 
 	@Override
 	public void delete(MemberDto memberDto) {
+		
 		MemberDto deletedMemerDto = memberDao.deleteMemberByMemIdAndMemPw(memberDto);
 		
 		if (deletedMemerDto != null) {

@@ -2,10 +2,13 @@ package com.office.member;
 
 import java.util.Scanner;
 
-public class MemberController implements MemberConfig {	
+public class MemberController implements MemberConfig {
+
+	final private MemberService memberService;
 	
-	final private MemberService memberService =
-			MemberContainer.getInstance().getMemberService();		
+	public MemberController(MemberService memberService) {
+		this.memberService = memberService;
+	}
 	
 	public void execute() {
 		
@@ -15,7 +18,7 @@ public class MemberController implements MemberConfig {
 		
 		if (IS_DEV)
 			new MemberDumy().signUpForDumy(memberService);
-	
+		
 		String memId;
 		String memPw;
 		String memMail;
@@ -23,22 +26,22 @@ public class MemberController implements MemberConfig {
 		MemberDto memberDto;
 		
 		while (systemFlag) {
-			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIFY   4.DELETE   99.SYSTEM-OUT");
-			int selsctedMenuNum = scanner.nextInt();
+			System.out.println("1.SIGN-UP    2.SIGN-IN    3.MODIFY    4.DELETE    99.SYSTEM-OUT");
+			int selectedMenuNum = scanner.nextInt();
 			
-			switch (selsctedMenuNum) {
-			case SIGN_UP: 
+			switch (selectedMenuNum) {
+			case SIGN_UP:
 				
-				System.out.println("Input new member ID!");
+				System.out.println("Input new member ID!!");
 				memId = scanner.next();
 				
-				System.out.println("Input new member PW!");
+				System.out.println("Input new member PW!!");
 				memPw = scanner.next();
 				
-				System.out.println("Input new member MAIL!");
+				System.out.println("Input new member MAIL!!");
 				memMail = scanner.next();
 				
-				System.out.println("Input new member PHONE!");
+				System.out.println("Input new member Phone!!");
 				memPhone = scanner.next();
 				
 				memberDto = new MemberDto(memId, memPw, memMail, memPhone);
@@ -46,24 +49,22 @@ public class MemberController implements MemberConfig {
 				memberService.signUp(memberDto);
 				
 				break;
+			case SIGN_IN:
 				
-			case SIGN_IN: 
-				
-				System.out.println("Input member ID!");
+				System.out.println("Input member ID!!");
 				memId = scanner.next();
 				
-				System.out.println("Input member PW!");
+				System.out.println("Input member PW!!");
 				memPw = scanner.next();
-			  
+				
 				memberDto = new MemberDto(memId, memPw, null);
 				
-				memberService.signIn(memberDto);
+				memberService.signIn(memberDto);	
 				
 				break;
-				
-			case MODIFY: 
+			case MODIFY:
 				/*
-				 * ID & PW 인증 OK -> PW, MAIL, PHONE 수정한다.
+				 * ID, PW --> 인증 OK -> PW, MAIL, PHONE 수정 한다.
 				 */
 				
 				System.out.println("Input member ID!!");
@@ -96,32 +97,33 @@ public class MemberController implements MemberConfig {
 				}
 				
 				break;
-				
-			case DELETE: 
+			case DELETE:
 				/*
 				 * ID & PW 인증 후 삭제
 				 */
 				
-				System.out.println("Input member ID!");
+				System.out.println("Input member ID!!");
 				memId = scanner.next();
 				
-				System.out.println("Input member PW!");
+				System.out.println("Input member PW!!");
 				memPw = scanner.next();
-			  
+				
 				memberDto = new MemberDto(memId, memPw, null);
 				
 				memberService.delete(memberDto);
 				
-				break;	
+				break;
 				
-			case SYSTEM_OUT: 
+			case SYSTEM_OUT:
 				systemFlag = false;
 				System.out.println("good bye~");
 				break;
-				
 			
 			}
+			
 		}
+		
+		scanner.close();
 		
 	}
 	
