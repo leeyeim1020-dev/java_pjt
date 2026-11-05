@@ -3,13 +3,15 @@ package com.office.member;
 import java.util.Scanner;
 
 public class MemberController implements MemberConfig {	
-		
+	
+	final private MemberService memberService =
+			MemberContainer.getInstance().getMemberService();		
 	
 	public void execute() {
 		
 		Scanner scanner = new Scanner(System.in);
 		boolean systemFlag = true;
-		MemberService memberService = new MemberService();
+//		MemberService memberService = new MemberService();
 		
 		if (IS_DEV)
 			new MemberDumy().signUpForDumy(memberService);
@@ -21,7 +23,7 @@ public class MemberController implements MemberConfig {
 		MemberDto memberDto;
 		
 		while (systemFlag) {
-			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIYF   4.DELETE   99.SYSTEM-OUT");
+			System.out.println("1.SIGN-UP   2.SIGN-IN   3.MODIFY   4.DELETE   99.SYSTEM-OUT");
 			int selsctedMenuNum = scanner.nextInt();
 			
 			switch (selsctedMenuNum) {
@@ -59,7 +61,37 @@ public class MemberController implements MemberConfig {
 				
 				break;
 				
-			case MODIYF: 
+			case MODIFY: 
+				/*
+				 * ID & PW 인증 OK -> PW, MAIL, PHONE 수정한다.
+				 */
+				
+				System.out.println("Input member ID!");
+				memId = scanner.next();
+				
+				System.out.println("Input member PW!");
+				memId = scanner.next();
+				
+				memberDto = new MemberDto(memId, memPw, null);
+				
+				boolean isAuthentication = 
+						memberService.doAutentucationByMemIdAndMemPw(memberDto);
+				
+				if (isAuthentication) {
+					System.out.println("Input member PW!");
+					memId = scanner.next();
+					
+					System.out.println("Input member MAIL");
+					memMail = scanner.next();
+					
+					System.out.println("Input member PHONE");
+					memPhone = scanner.next();
+					
+					memberDto.setMemPw(memPw);
+					memberDto.setMemMail(memMail);
+					memberDto.setMemPhone(memPhone);
+				}
+				
 				memberService.modify();
 				break;
 				
