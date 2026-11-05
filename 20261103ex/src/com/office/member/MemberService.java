@@ -2,8 +2,13 @@ package com.office.member;
 
 public class MemberService implements IMemberService {
 	
-	final private MemberDao memberDao =
-			MemberContainer.getInstance().getMemberDao();
+	final private MemberDao memberDao;
+	
+	public MemberService(MemberDao memberDao) {
+		this.memberDao = MemberDao memberDao;
+	}
+	
+	
 
 	@Override
 	public void signUp(MemberDto memberDto) {
@@ -70,7 +75,7 @@ public class MemberService implements IMemberService {
 		}
 	}
 
-	public boolean doAutentucationByMemIdAndMemPw(MemberDto memberDto) {
+	public boolean doAuthenticationByMemIdAndMemPw(MemberDto memberDto) {
 		
 		MemberDto dto = memberDao.searchMemberByMemIdAndMemPw(memberDto);
 		
@@ -80,6 +85,8 @@ public class MemberService implements IMemberService {
 		
 		return dto != null ? true : false;
 	}
+
+	
 	
 	
 

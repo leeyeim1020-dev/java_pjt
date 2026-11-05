@@ -2,9 +2,11 @@ package com.office.member;
 
 public class MemberContainer {
 	
-	final private MemberController MEMBER_CONTROLLER = new MemberController();
-	final private MemberService MEMBER_SERVICE = new MemberService();
 	final private MemberDao MEMBER_DAO = new MemberDao();
+	final private MemberService MEMBER_SERVICE = new MemberService();
+	final private MemberController MEMBER_CONTROLLER = new MemberController();
+	
+	
 	
 	private static MemberContainer memberContainer;
 	
@@ -14,20 +16,22 @@ public class MemberContainer {
 		if (memberContainer == null) {
 			memberContainer = new MemberContainer();
 		}
+		
+		return memberContainer;
+		
+	}
+	
+	
+	public MemberController getMemberContainer() {
+		return MEMBER_CONTROLLER;
+	}
 	
 	public MemberService getMemberService() {
-		return memberService;
+		return MEMBER_SERVICE;
 	}
 
 	public MemberDao getMemberDao() {
-		return memberDao;
-	}
-		
-		return memberContainer;
-	}
-
-	public static MemberContainer getMemberContainer() {
-		return memberContainer;
+		return MEMBER_DAO;
 	}
 
 

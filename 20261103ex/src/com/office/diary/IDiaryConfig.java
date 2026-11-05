@@ -1,6 +1,6 @@
 package com.office.diary;
 
-public class IDiaryConfig {
+public interface IDiaryConfig {
 	
 	final public static int DIARY_WRITE    = 1;
 	final public static int DIARY_READ     = 2;

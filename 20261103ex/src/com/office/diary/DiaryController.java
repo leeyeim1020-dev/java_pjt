@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DiaryController implements IDiaryConfig {
 
-final private DiarySevice diarySevice;
+	final private DiarySevice diarySevice;
 	
 	public DiaryController(DiarySevice diarySevice) {
 		this.diarySevice = diarySevice;
@@ -22,9 +22,21 @@ final private DiarySevice diarySevice;
 			switch (selectedMenuNum) {
 			case DIARY_WRITE:
 				
+				scanner.nextLine();
+				
+				System.out.println("INPUT NEW DIARY TXT!");
+				String txt = scanner.nextLine();
+				
+				DiaryDto diaryDto = new DiaryDto(txt);
+				
+				diarySevice.witeNewDiary(diaryDto);
+				
 				break;
 
 			case DIARY_READ:
+				
+				diarySevice.readDiaries();
+				
 				break;
 				
 			case SYSTEM_OUT:

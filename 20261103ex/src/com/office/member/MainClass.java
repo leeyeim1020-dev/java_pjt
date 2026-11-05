@@ -10,7 +10,7 @@ public class MainClass {
 //		MemberContainer memberContainer = MemberContainer.getInstance();
 //		memberContainer.getMemberContainer().execute();
 		
-		MemberContainer.getInstance().getMemberContainer().execute;
+		MemberContainer.getInstance().getMemberContainer().execute();
 
 	}
 	
