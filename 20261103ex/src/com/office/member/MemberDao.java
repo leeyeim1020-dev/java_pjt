@@ -4,10 +4,6 @@ import java.util.HashMap;
 
 public class MemberDao {
 	
-	/*
-	 * gildong : MemberDto
-	 */
-	
 	HashMap<String, MemberDto> db = new HashMap<String, MemberDto>();
 
 	public boolean isMember(String memId) {
