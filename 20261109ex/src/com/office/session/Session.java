@@ -6,10 +6,10 @@ public class Session {
 
 	private static Session session;
 	
-	final private HashMap<String, Object> attributies;
+	final private HashMap<String, Object> attribute;
 	
 	private Session() {
-		attributies = new HashMap<String, Object>();
+		attribute = new HashMap<String, Object>();
 	}
 	
 	public static Session getInstance() {
@@ -19,16 +19,16 @@ public class Session {
 		return session;
 	}
 
-	public HashMap<String, Object> getAttributies() {
-		return attributies;
+	public Object getAttribute(String name) {
+		return attribute.get(name);
 	}
 	
 	public void setAttribute(String name, Object object) {
-		attributies.put(name, object);
+		attribute.put(name, object);
 	}
 	
 	public void removeAttribute(String name) {
-		attributies.remove(name);
+		attribute.remove(name);
 	}
 	
 }

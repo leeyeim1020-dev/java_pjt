@@ -2,6 +2,7 @@ package com.office.member;
 
 import java.util.Scanner;
 
+import com.office.config.Config;
 import com.office.menu.Menu;
 import com.office.session.Session;
 
@@ -61,7 +62,7 @@ public class MemberController {
 			if (signInedMemberDto != null) {
 				System.out.println("SIGN-IN SUCCESS!!");
 				Session.getInstance().setAttribute(
-						"signInedMemberId",
+						Config.SIGNINED_MEMBER_ID,
 						signInedMemberDto.getMemId());
 			} else {
 				System.out.println("SIGN=IN FAIL");
@@ -71,9 +72,40 @@ public class MemberController {
 			
 		case Menu.MEMBER_SIGN_OUT:
 			
+			Session.getInstance().removeAttribute(Config.SIGNINED_MEMBER_ID);
+			
 			break;
 			
 		case Menu.MEMBER_MODIFY:
+			
+			MemberDto signeInMemberDto = memberService.getMember();
+			
+			System.out.println("MemberID: " + signeInMemberDto.getMemId());
+			System.out.println("MemberPW: " + signeInMemberDto.getMemPw());
+			System.out.println("MemberMAIL: " + signeInMemberDto.getMemMail());
+			System.out.println("MemberPHONE: " + signeInMemberDto.getMemPhone());
+			
+			System.out.println("Input member new PW!");
+			memPw = scanner.next();
+			
+			System.out.println("Input member new MAIL!");
+			memMail = scanner.next();
+			
+			System.out.println("Input member new PHONE!");
+			memPhone = scanner.next();
+			
+			int resultForModify =
+					memberService.modify(new MemberDto(
+							String.valueOf(Session.getInstance().getAttribute(Config.SIGNINED_MEMBER_ID)),
+									memPw,
+									memMail, 
+									memPhone));
+			if (resultForModify == MemberService.MODIFY_SUCCESS) {
+				System.out.println("MEMBER UPDATE SUCCESS!");
+				
+			} else {
+				System.out.println("MEMBER UPDATE FAIL!");
+			}
 			
 			break;		
 			
