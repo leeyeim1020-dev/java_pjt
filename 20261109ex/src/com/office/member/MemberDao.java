@@ -53,4 +53,18 @@ public class MemberDao {
 		return members.get(memId) != null ? members.get(memId) : null;
 	}
 
+	public int deleteByMemId(String memId) {
+		
+		HashMap<String, MemberDto> members = diaryDb.getMembers();
+		
+		members.remove(memId);
+		
+		return members.get(memId) == null
+				?
+				MemberService.DELETE_SUCCESS
+				:
+				MemberService.DELETE_FAIL;
+						
+	}
+
 }

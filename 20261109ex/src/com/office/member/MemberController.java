@@ -111,6 +111,18 @@ public class MemberController {
 			
 		case Menu.MEMBER_DELETE:
 			
+			int resultForDelete = memberService.delete(
+					String.valueOf(Session.getInstance().getAttribute(Config.SIGNINED_MEMBER_ID))
+					);
+			
+			if (resultForDelete == MemberService.DELETE_SUCCESS) {
+				System.out.println("MEMBER DELETE SUCCESS!");
+				Session.getInstance().removeAttribute(Config.SIGNINED_MEMBER_ID);
+				
+			} else {
+				System.out.println("MEMBER DELETE FAIL!");
+			}
+			
 			break;	
 		}
 		

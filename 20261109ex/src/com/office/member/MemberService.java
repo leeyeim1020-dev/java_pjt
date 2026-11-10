@@ -13,6 +13,9 @@ public class MemberService {
 	final public static int MODIFY_FAIL 		= 0;
 	final public static int MODIFY_SUCCESS 		= 1;
 	
+	final public static int DELETE_FAIL 		= 0;
+	final public static int DELETE_SUCCESS 		= 1;
+	
 	public MemberService(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
@@ -57,6 +60,13 @@ public class MemberService {
 	public int modify(MemberDto memberDto) {
 		
 		return memberDao.updatMember(memberDto);
+		
+	}
+
+	public int delete(String memId) {
+		
+		return memberDao.deleteByMemId(memId);
+		
 		
 	}
 }
