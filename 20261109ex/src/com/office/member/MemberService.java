@@ -39,7 +39,8 @@ public class MemberService {
 				
 		
 		if (selectedMemberDto != null 
-				&& selectedMemberDto.getMemPw().equals(memberDto.getMemPw())) {
+				&&
+				selectedMemberDto.getMemPw().equals(memberDto.getMemPw())) {
 				return selectedMemberDto;
 				
 		} else {

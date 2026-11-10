@@ -7,7 +7,6 @@ public class MemberDto {
 	private String memPw;
 	private String memMail;
 	private String memPhone;
-	private boolean active = true;
 	
 	public MemberDto() {
 	
